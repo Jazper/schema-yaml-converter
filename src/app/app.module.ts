@@ -4,7 +4,7 @@ import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'ngx-sch
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { Bootstrap4FrameworkModule } from '@ajsf/bootstrap4';
-import { APP_BASE_HREF, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   imports: [SchemaFormModule.forRoot(), BrowserModule, RouterModule.forRoot([]), Bootstrap4FrameworkModule],
@@ -12,7 +12,6 @@ import { APP_BASE_HREF, HashLocationStrategy, LocationStrategy } from '@angular/
   providers: [
     { provide: WidgetRegistry, useClass: DefaultWidgetRegistry },
     { provide: APP_BASE_HREF, useValue: '/' },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })
