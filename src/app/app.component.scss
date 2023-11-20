@@ -1,0 +1,38 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.column {
+  display: block;
+  width: 50%;
+  padding: 12px;
+
+  &_result {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.yaml {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  flex-grow: 1;
+  background-color: #eee;
+}
+
+.result {
+  display: flex;
+
+  &__title {
+    flex-grow: 1;
+  }
+}
+
+.download {
+  border: 1px solid gray;
+  border-radius: 4px;
+}

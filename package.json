@@ -1,0 +1,49 @@
+{
+  "name": "schema-yaml",
+  "version": "0.0.0",
+  "main": "app.js",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "electron-package": "ng build && electron-packager . --platform=mas --arch=arm64 --no-prune --ignore=/node_modules --ignore=/e2e --ignore=/src --overwrite"
+  },
+  "private": true,
+  "dependencies": {
+    "@ajsf/bootstrap4": "^0.8.0",
+    "@angular/animations": "^17.0.2",
+    "@angular/cdk": "^17.0.0",
+    "@angular/common": "^17.0.2",
+    "@angular/compiler": "^17.0.2",
+    "@angular/core": "^17.0.2",
+    "@angular/forms": "^17.0.2",
+    "@angular/platform-browser": "^17.0.2",
+    "@angular/platform-browser-dynamic": "^17.0.2",
+    "@angular/router": "^17.0.2",
+    "jexl": "^2.3.0",
+    "ngx-schema-form": "^2.11.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "yaml": "^2.3.4",
+    "z-schema": "^6.0.1",
+    "zone.js": "~0.14.2"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.0.0",
+    "@angular/cli": "^17.0.0",
+    "@angular/compiler-cli": "^17.0.0",
+    "@types/jasmine": "~5.1.0",
+    "@types/yaml": "^1.9.7",
+    "electron": "^27.1.0",
+    "electron-packager": "^17.1.2",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.2.2"
+  }
+}
