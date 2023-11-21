@@ -36,3 +36,22 @@
   border: 1px solid gray;
   border-radius: 4px;
 }
+
+::ng-deep {
+  .form-flex-column {
+    flex-direction: column !important;
+    gap: 8px;
+  }
+
+  .array-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .close-button {
+    position: static !important;
+    visibility: unset !important;
+    justify-content: end;
+    align-self: flex-end;
+  }
+}

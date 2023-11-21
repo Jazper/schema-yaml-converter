@@ -3,16 +3,38 @@
     <div class="selectfile">
       <input type="file" accept=".json" (change)="uploadFile($event)" />
     </div>
-    <sf-form class="form" [schema]="schema" (onChange)="onChange($event.value)"></sf-form>
-    <!-- <json-schema-form [schema]="schema" framework="bootstrap-4" (onSubmit)="onChange($event)"></json-schema-form> -->
+    <!-- <sf-form class="form" [schema]="schema" (onChange)="onChange($event.value)"></sf-form> -->
+    <json-schema-form
+      [loadExternalAssets]="true"
+      [schema]="schema"
+      framework="material-design"
+      (isValid)="isValid($event)"
+      (onChanges)="onChange($event)"
+      (validationErrors)="validationErrors($event)"
+    ></json-schema-form>
   </div>
   <div class="column column_result">
     <div class="result">
       <div class="result__title">Result:</div>
       <div class="result__save-button">
-        <button class="download" [disabled]="!schema" (click)="download()">Download yaml file</button>
+        <button class="download" [disabled]="!formIsValid" (click)="download()">Download yaml file</button>
       </div>
     </div>
+
+    <div>
+      Valid?:
+      <strong
+        *ngIf="formIsValid || prettyValidationErrors"
+        [class.text-success]="formIsValid"
+        [class.text-danger]="!formIsValid"
+      >
+        {{ formIsValid ? 'Yes' : 'No' }}
+      </strong>
+      <span *ngIf="!formIsValid && !prettyValidationErrors">n/a</span>
+      <span *ngIf="prettyValidationErrors">— errors from validationErrors():</span>
+      <div *ngIf="prettyValidationErrors" class="data-bad" [innerHTML]="prettyValidationErrors"></div>
+    </div>
+
     <div class="yaml" [innerHTML]="yamlText"></div>
   </div>
 </div>

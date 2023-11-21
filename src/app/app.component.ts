@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 
 import { ISchema } from 'ngx-schema-form';
-// import schema1 from '../../../dwh-notifier-validation-schema.json';
-// import schema2 from '../../../dwh-xdm-validation-schema.json';
-// import schema3 from '../../../dwh-raw-validation-schema.json';
-// import schema4 from '../../../dwh-freezer-validation-schema.json';
-// import schema5 from '../../../clickstream-validation-schema.json';
 import { stringify } from 'yaml';
 import { ActivatedRoute } from '@angular/router';
-import { from, switchMap } from 'rxjs';
+import { JsonPointer } from '@ajsf/core';
 
 @Component({
   selector: 'app-root',
@@ -22,24 +17,40 @@ export class AppComponent {
 
   yamlText: any;
   fileName: string = 'fileName';
+  formIsValid = false;
+  formValidationErrors: any;
 
-  constructor(public readonly activatedRoute: ActivatedRoute) {
-    // this.activatedRoute.params
-    //   .pipe(
-    //     switchMap(params => {
-    //       return from(fetch(`../../${params['schema']}.json`));
-    //     }),
-    //   )
-    //   .subscribe(result => {
-    //     console.log(result);
-    //   });
+  get prettyValidationErrors() {
+    if (!this.formValidationErrors) {
+      return null;
+    }
+    const errorArray = [];
+    for (const error of this.formValidationErrors) {
+      const message = error.message;
+      const dataPathArray = JsonPointer.parse(error.dataPath);
+      if (dataPathArray.length) {
+        let field = dataPathArray[0];
+        for (let i = 1; i < dataPathArray.length; i++) {
+          const key = dataPathArray[i];
+          field += /^\d+$/.test(key) ? `[${key}]` : `.${key}`;
+        }
+        errorArray.push(`${field}: ${message}`);
+      } else {
+        errorArray.push(message);
+      }
+    }
+    return errorArray.join('<br>');
   }
+
+  constructor(public readonly activatedRoute: ActivatedRoute) {}
 
   onChange(json: string): void {
     this.yamlText = stringify(json);
   }
 
   uploadFile(event: any) {
+    this.formValidationErrors = null;
+
     const fileReader = new FileReader();
 
     this.selectedFile = event.target.files[0];
@@ -48,7 +59,9 @@ export class AppComponent {
 
     fileReader.readAsText(this.selectedFile, 'UTF-8');
     fileReader.onload = () => {
-      this.schema = JSON.parse(fileReader.result!.toString());
+      this.schema = {
+        schema: JSON.parse(fileReader.result!.toString()),
+      };
     };
     fileReader.onerror = error => {
       console.log(error);
@@ -68,5 +81,14 @@ export class AppComponent {
     element.click();
 
     document.body.removeChild(element);
+  }
+
+  isValid($event: boolean) {
+    console.log($event);
+    this.formIsValid = $event;
+  }
+
+  validationErrors(data: any): void {
+    this.formValidationErrors = data;
   }
 }
