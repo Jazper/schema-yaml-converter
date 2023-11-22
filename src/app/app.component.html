@@ -3,7 +3,6 @@
     <div class="selectfile">
       <input type="file" accept=".json" (change)="uploadFile($event)" />
     </div>
-    <!-- <sf-form class="form" [schema]="schema" (onChange)="onChange($event.value)"></sf-form> -->
     <json-schema-form
       [loadExternalAssets]="true"
       [schema]="schema"

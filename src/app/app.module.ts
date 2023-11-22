@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'ngx-schema-form';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { Bootstrap3FrameworkModule } from '@ajsf/bootstrap3';
@@ -26,7 +25,6 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    SchemaFormModule.forRoot(),
     RouterModule.forRoot([]),
     MatButtonModule,
     MatCardModule,
@@ -43,7 +41,6 @@ import { FormsModule } from '@angular/forms';
   ],
   declarations: [AppComponent],
   providers: [
-    { provide: WidgetRegistry, useClass: DefaultWidgetRegistry },
     { provide: APP_BASE_HREF, useValue: '/' },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
   ],
