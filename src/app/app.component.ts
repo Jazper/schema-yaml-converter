@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { ISchema } from 'ngx-schema-form';
 import { stringify } from 'yaml';
 import { ActivatedRoute } from '@angular/router';
 import { JsonPointer } from '@ajsf/core';
@@ -11,12 +10,12 @@ import { JsonPointer } from '@ajsf/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  schema: ISchema | null = null;
+  schema: any = null;
 
   selectedFile: any;
 
   yamlText: any;
-  fileName: string = 'fileName';
+  fileName = '';
   formIsValid = false;
   formValidationErrors: any;
 

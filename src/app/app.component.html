@@ -1,9 +1,12 @@
 <div class="page">
   <div class="column">
     <div class="selectfile">
-      <input type="file" accept=".json" (change)="uploadFile($event)" />
+      <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Choose File</button>
+      <input hidden (change)="uploadFile($event)" #fileInput type="file" id="file" />
+      <span class="file-name">{{ fileName }}</span>
     </div>
     <json-schema-form
+      class="form"
       [loadExternalAssets]="true"
       [schema]="schema"
       framework="material-design"
@@ -16,7 +19,9 @@
     <div class="result">
       <div class="result__title">Result:</div>
       <div class="result__save-button">
-        <button class="download" [disabled]="!formIsValid" (click)="download()">Download yaml file</button>
+        <button mat-raised-button color="primary" class="download" [disabled]="!formIsValid" (click)="download()">
+          Download yaml file
+        </button>
       </div>
     </div>
 

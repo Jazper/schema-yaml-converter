@@ -15,6 +15,15 @@
   }
 }
 
+.file-name {
+  margin-left: 12px;
+}
+
+.form {
+  margin-top: 16px;
+  display: block;
+}
+
 .yaml {
   padding: 4px 8px;
   border: 1px solid #ccc;
@@ -30,11 +39,6 @@
   &__title {
     flex-grow: 1;
   }
-}
-
-.download {
-  border: 1px solid gray;
-  border-radius: 4px;
 }
 
 ::ng-deep {
