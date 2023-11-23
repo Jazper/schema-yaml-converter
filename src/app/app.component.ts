@@ -43,8 +43,8 @@ export class AppComponent {
 
   constructor(public readonly activatedRoute: ActivatedRoute) {}
 
-  onChange(json: string): void {
-    this.yamlText = stringify(json);
+  onChange(json: any): void {
+    this.yamlText = stringify(json?.schema || {});
   }
 
   uploadFile(event: any) {
@@ -67,12 +67,10 @@ export class AppComponent {
     };
   }
 
-  // loadFile(fileName: string): void {}
-
   download(): void {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.yamlText));
-    element.setAttribute('download', `${this.fileName}.yaml`);
+    element.setAttribute('download', `${this.fileName}.yml`);
 
     element.style.display = 'none';
     document.body.appendChild(element);
